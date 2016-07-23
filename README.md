@@ -26,6 +26,30 @@ To install sdkman on a fresh system just paste the following in a linux terminal
 curl -s "https://get.sdkman.io" | bash
 ```
 
-This will install the sdk tool.  To use the tool create a new terminal window to activate the entry the installation added to your ~/.bashrc file
-To see all the candidate tools you can install type
-```sdk list```
+This will install the sdk tool.
+To use the tool create a new terminal window to activate the entry the installation
+added to your ~/.bashrc file
+
+To see all the candidate softwarre you can install type
+```
+sdk list
+```
+
+to install the latest version
+
+```
+sdk install candidate
+```
+e.g
+sd install maven
+
+Examples of commonly used command are below. The  full usage guide is at http://sdkman.io/usage.html
+
+| sdk cmd  |  example | description  |
+|---|---|---|
+| sdk ls                             | sdk list                | show all candidate software you can install |
+| sdk ls <candidate>                 | sdk ls maven            | show all versions of candidate software |
+| sdk install <candidate>            | sdk install maven       | install the latest version  |
+| sdk install <candidate>  [version] | sdk install maven 3.3.3 | install a specific verion of software    |
+| sdk current                        |                         | show all software installed by sdk    |
+| sdk use <candidate> <version>      | sdk use gradle 2.8      | switch to a differnt version of installed software  |
