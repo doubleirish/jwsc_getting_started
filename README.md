@@ -189,6 +189,33 @@ to make it easier to read There's a JSON formatter chrome extension you can add 
 https://chrome.google.com/webstore/detail/bcjindcccaagfpapjjmafapmmgkkhgoa
 
 
+## Spring Tool Suite
+there are some special spring boot wizards built into the Spring Tool Suite (STS) IDE
+This IDE can be downloaded from spring at
+https://spring.io/tools/sts/all
 
+On Runing the IDE for the first time
+select a workspace location of "/vagrant/workspace"
+After installation completes select the following menu items
+
+File -> New -> Spring Starter Project
+use the defaults and select next
+select the web dependency
+
+Add the @RequestCOntroller and @requestMapping annotations as before
+
+select the Run -> Run As menu item
+Select "Spring Boot" App as the Run-as configuration
+
+run the app , you should see the output in  the log pane.
+conect a browser to localhost:8080
+or
+curl localhost:8080 to see the output.
+
+to see how to use properties
+https://spring.io/blog/2015/03/18/spring-boot-support-in-spring-tool-suite-3-6-4
 
 TODO spring init -d=web,data-jpa,thymeleaf,actuator,actuator-docs,hsql  hello
+
+## Deploying to cloud foundry from eclipse
+https://blog.pivotal.io/pivotal-cloud-foundry/products/service-management-through-cloud-foundry-eclipse

@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-   config.vm.network "forwarded_port", guest: 8080, host: 80
+   config.vm.network "forwarded_port", guest: 8080, host: 8080
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -102,17 +102,25 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", privileged: false, inline: "source '/home/vagrant/.sdkman/bin/sdkman-init.sh' && yes | sdk install maven 3.3.9"
   config.vm.provision "shell", privileged: false, inline: "source '/home/vagrant/.sdkman/bin/sdkman-init.sh' && yes | sdk install springboot 1.3.6.RELEASE"
   config.vm.provision "shell", privileged: false, inline: "source '/home/vagrant/.sdkman/bin/sdkman-init.sh' && yes | sdk install gradle 2.9"
-  
-  #sdk provides acommand line completion for the spring  CLI
+  config.vm.provision "shell", privileged: false, inline: "source '/home/vagrant/.sdkman/bin/sdkman-init.sh' && yes | sdk install lazybones"
+  config.vm.provision "shell", privileged: false, inline: "source '/home/vagrant/.sdkman/bin/sdkman-init.sh' && yes | sdk install crash"
+
+  #sdk provides a command line completion for the spring  CLI
   config.vm.provision "shell", privileged: false, inline: "source '/home/vagrant/.sdkman/candidates/springboot/current/shell-completion/bash/spring' "
   
- 
+ config.vm.provision "shell", privileged: true, inline: "chown -R vagrant /opt "
+ config.vm.provision "shell", privileged: true, inline: "chgrp -R vagrant /opt "
  
     #  install intellij
-  config.vm.provision "shell", privileged: true, inline: "cd /opt && wget -O /opt/intellij.tar.gz https://download.jetbrains.com/idea/ideaIC-2016.2.tar.gz && tar xzvf  /opt/intellij.tar.gz "    
+  config.vm.provision "shell", privileged: true, inline: "cd /opt && wget -O /opt/intellij.tar.gz https://download.jetbrains.com/idea/ideaIC-2016.2.tar.gz && tar -xzvf  /opt/intellij.tar.gz "
   config.vm.provision "shell", privileged: true, inline: "cd /opt && sudo ln -s /opt/idea-*  /opt/idea  "
   config.vm.provision "shell", privileged: true, inline: "chown -R vagrant /opt/idea* "
-  
+
+
+    #  install Spring tool suite
+    config.vm.provision "shell", privileged: true, inline: "cd /opt && curl http://dist.springsource.com/release/STS/3.8.0.RELEASE/dist/e4.6/spring-tool-suite-3.8.0.RELEASE-e4.6-linux-gtk-x86_64.tar.gz -o /opt/sts.tar.gz && tar -xzvf  /opt/sts.tar.gz "
+   curl http://dist.springsource.com/release/STS/3.8.0.RELEASE/dist/e4.6/spring-tool-suite-3.8.0.RELEASE-e4.6-linux-gtk-x86_64.tar.gz -o sts.tar.gz
+
   # vagrant ssh 
   # login using vagrant/vagrant
   # startx  #to run ubuntu gui desktop
