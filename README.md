@@ -40,11 +40,12 @@ sdk list
 
 to install the latest version
 ```
-sdk install candidate
+sdk install <candidate>
 ```
 e.g
-sd install maven
-
+```
+sdk install maven
+```
 Examples of commonly used command are below. The  full usage guide is at http://sdkman.io/usage.html
 
 | sdk cmd  |  example | description  |
@@ -57,7 +58,7 @@ Examples of commonly used command are below. The  full usage guide is at http://
 | sdk use <candidate> <version>      | sdk use gradle 2.8      | switch to a differnt version of installed software  |
 
 
-the following is the list of software automatically installed by sdkman in the vagrant file
+The following is the list of software automatically installed by sdkman in the vagrant file
 ```
 sdk install maven
 sdk install springboot
@@ -70,46 +71,108 @@ gradle: 2.8
 maven: 3.3.9
 springboot: 1.3.6.RELEASE
 
-## spring init
-The Spring boot Command Line Interface  can be accessed by entering
+# Spring Boot Scaffolding
+There are three ways you can quickly create skeleton Spring Boot applications.
+
+* Spring Command Line Interface (CLI)
+* IDE based e.g  Spring Tool Suite IDE's Starter Projects or Intelij
+* via start
+* 
+
+## Intellij - Spring Initializer 
+In Intellij navigate the following menu items 
+  File -> New...-> Project ... -> 
+Select "Spring Initializer" and click Next
+Enable any of the dependencies e.g 
+xxx
+Click finish to build a skeleton app. 
+
+
+## The Spring Tools Suite (STS) IDE Also has a wizard for creating new spring -initializer based projects
+In STS navigate the following menu items 
+- File -> New -> Spring Starter Project ... -> 
+- Modify your artifact and build settings as needed.
+- Click Next to proceed to the dependencies section
+- select the dependencies you want 
+- inthe site info dialog select the starter project config for use with the start.spring.io for the future  
+
+- e.g mouseover the following to see a [saved start.spring.io link , clicking downloads a zip ](http://start.spring.io/starter.zip?name=demo&groupId=com.example&artifactId=demo&version=0.0.1-SNAPSHOT&description=Demo+project+for+Spring+Boot&packageName=com.example&type=maven-project&packaging=jar&javaVersion=1.8&language=java&bootVersion=1.4.0.RELEASE&dependencies=actuator-docs&dependencies=actuator&dependencies=web&dependencies=hateoas) 
+- Alternatively click on "Finish" to import the new project into STS
+  
+
+## http://start.spring.io
+alternatively you can use the the following website 
+[https://start.spring.io/](https://start.spring.io/)
+ - search for dependencies you want using the auto-complete search box 
+ - or use the "switch to full version" link to see all possible dependencies
+ - click on the generate project button to download a ZIP
+ - explode the ZIP file and open up the project in your IDE of choice.
+
+
+
+
+## spring Boot CLI
+The Spring Boot Command Line Interface  (CLI)   creating and packaging spring-boot apps
+You can more about using it and installation instructions at 
+
+http://docs.spring.io/spring-boot/docs/current/reference/html/getting-started-installing-spring-boot.html#getting-started-installing-the-cli 
+
+I recommend installing using sdkman utility descibed earlier
+
+
+
 ```
 spring
 ```
 
-entering spring with out arguments by default   returns  the help message showing all the commands you can pass into the spring CLI
+Entering Spring without any arguments by default, returns a help message showing all the commands you can pass into the spring CLI
 
 to see more information on a particualr command  enter
-
+```
 spring help <command>
-
+```
 e.g
+```
 spring help init
+```
 
-the init command allows skeleton applications to be created very easily
-this is somewhat similar to the old maven archetype feature but it is much more flexible.
-Think of an application as containing facets or dependencies, you decide what facets will be included
-e.g a web facet if it has a web frontend or a JPA facet if it has a JPA based interface with a datastore.
+The *init* command allows skeleton applications to be created very easily.
+This is somewhat similar to the old maven archetype feature but it is much more flexible.
+Think of an application as containing facets or dependencies, you can decide what facets will be included.
+e.g include a web facet if it has a web frontend or a JPA facet if it has a JPA based interface with a datastore.
 You include the facets you're interested in and it builds a zip containing the source code of a skeleton application.
 
 to see a list of all avaialble dependencies
+
 ```
 spring init --list
 ```
+
 or  visit the following website and enable the advanced search to see all available dependencies
+
 ```
 http://start.spring.io/
 ```
 
 the following command will create a simple web appicalition skelton in a new "hello" directory
 ```
-spring init -d=web,actuator,actuator-docs,hateoas  hello
+spring init  -d=web,actuator,actuator-docs,hateoas \
+               --groupId=edu.jwsc.hello \
+               --package=edu.jwsc.hello    hello
+
 ```
+
+It's possible to tweak the language (java vs groovy) packaging (jar war) and build (gradle vs maven) defaults
+http://freecontent.manning.com/wp-content/uploads/initializing-a-spring-boot-project-with-spring-initializr.pdf
+
 
 ```
 cd hello
 /vagrant/hello$ ls
 mvnw  mvnw.cmd  pom.xml  src
 ```
+
+
 and it's created a standard maven subdirectory structure to store the application files
 ```
 /vagrant/hello$ du
