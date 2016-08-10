@@ -13,13 +13,14 @@ This attached Vagrantfile provides a standard predefined java environment to hel
 ##sdkman!
 The included [sdkman](http://sdkman.io/) tool makes it easy to install and manage tools like maven, gradle and springboot-cli without worrying about PATHS and environmental variables.
 In the old days to install a tool like maven or gradle you would have to do the following :-
- * find the tool on the web and download it
- * extract it into a directory 
- * possibly fix file permissions
- * add a XYZ_HOME environmental variable
- * add the XYZ_HOME\bin directory to your PATH variable
 
-The sdkman utility simplfies all of the above
+* find the tool on the web and download it
+* extract it into a directory 
+* possibly fix file permissions
+* add a XYZ_HOME environmental variable
+* add the XYZ_HOME\bin directory to your PATH variable
+
+The sdkman utility simplifies all of the above
   and also makes it easy to have multiple versions of tools like maven and gradle
    and easily switch between versions. This tool is already included in the attached Vagrantfile .
 
@@ -76,64 +77,76 @@ There are three ways you can quickly create skeleton Spring Boot applications.
 
 * Spring Command Line Interface (CLI)
 * IDE based e.g  Spring Tool Suite IDE's Starter Projects or Intelij
-* via start
-* 
+* via the web site http://start.spring.io
 
-## Intellij - Spring Initializer 
-In Intellij 
-  navigate the following menu items   File -> New...-> Project ... -> 
 
-- Select "Spring Initializer" and click Next
+## Intellij - Spring Initializer Project
+In Intellij   navigate through the following menu items  :-
+```
+  File -> New...-> Project ... -> 
+```
+The Select the "Spring Initializer" and click Next.
 
 Enable any of the dependencies e.g 
-xxx
-Click finish to build a skeleton app. 
+```
+web,actuator,actuator-docs,hateoas
+```
+Finally Click "Finish" to build a skeleton app.
+You may want to exit out and 
 
 
-## The Spring Tools Suite (STS) IDE Also has a wizard for creating new spring -initializer based projects
-In STS navigate the following menu items 
-- File -> New -> Spring Starter Project ... -> 
+## Spring Tools Suite (STS) Starter Project
+The Spring Tools Suite (STS) IDE also has a wizard for creating new Spring Initializer based projects
+- In STS navigate the following menu items 
+```
+File -> New -> Spring Starter Project ... -> 
+```
 - Modify your artifact and build settings as needed.
-- Click Next to proceed to the dependencies section
-- select the dependencies you want 
-- inthe site info dialog select the starter project config for use with the start.spring.io for the future  
-
-- e.g mouseover the following to see a [saved start.spring.io link , clicking downloads a zip ](http://start.spring.io/starter.zip?name=demo&groupId=com.example&artifactId=demo&version=0.0.1-SNAPSHOT&description=Demo+project+for+Spring+Boot&packageName=com.example&type=maven-project&packaging=jar&javaVersion=1.8&language=java&bootVersion=1.4.0.RELEASE&dependencies=actuator-docs&dependencies=actuator&dependencies=web&dependencies=hateoas) 
+- Click Next to proceed to the dependencies section.
+- Select the dependencies you want. e.g 
+```
+web,actuator,actuator-docs,hateoas 
+```
+- In the "Site info" dialog, you can save the starter project config for future use in  the http://start.spring.io website
+- e.g mouseover the following to see an example of a saved configuration
+   [saved start.spring.io link , clicking downloads a zip ](http://start.spring.io/starter.zip?name=demo&groupId=com.example&artifactId=demo&version=0.0.1-SNAPSHOT&description=Demo+project+for+Spring+Boot&packageName=com.example&type=maven-project&packaging=jar&javaVersion=1.8&language=java&bootVersion=1.4.0.RELEASE&dependencies=actuator-docs&dependencies=actuator&dependencies=web&dependencies=hateoas) 
 - Alternatively click on "Finish" to import the new project into STS
   
 
 ## http://start.spring.io
-alternatively you can use the the following website 
+Alternatively you can use the the following website to scaffold  a Spring boot  application.
+
 [https://start.spring.io/](https://start.spring.io/)
- - search for dependencies you want using the auto-complete search box 
- - or use the "switch to full version" link to see all possible dependencies
- - click on the generate project button to download a ZIP
- - explode the ZIP file and open up the project in your IDE of choice.
+
+- Connect your browser to the URL above. 
+- Change artifact,lanuage and build settings as needed. 
+- Search for dependencies you want using the auto-complete search box. 
+- Alternatively  use the "switch to full version" link to see all possible dependencies.
+- Click on the "Generate Project" button to download a Zip file containing your project
+- Explode the ZIP file and open up the project in your IDE of choice.
 
 
 
 
-## spring Boot CLI
-The Spring Boot Command Line Interface  (CLI)   creating and packaging spring-boot apps
-You can more about using it and installation instructions at 
+## Spring Boot CLI
+The Spring Boot Command Line Interface  (CLI)  creating and packaging spring-boot apps.
+You can more about using it and installation instructions in the offical [Spring Boot documentation](http://docs.spring.io/spring-boot/docs/current/reference/html/getting-started-installing-spring-boot.html#getting-started-installing-the-cli) 
 
-http://docs.spring.io/spring-boot/docs/current/reference/html/getting-started-installing-spring-boot.html#getting-started-installing-the-cli 
+I recommend installing using [sdkman](http://sdkman.io/) utility described earlier.
 
-I recommend installing using [sdkman](http://sdkman.io/) utility descibed earlier
-
-
+After installation entering "spring" at the command prompt without any arguments returns a usage message.
 
 ```
 spring
 ```
 
-Entering Spring without any arguments by default, returns a help message showing all the commands you can pass into the spring CLI
-
-to see more information on a particualr command  enter
+To see more information on a particular command, add "help" in front of the command 
 ```
 spring help <command>
 ```
-e.g
+
+e.g to get help on the init command 
+
 ```
 spring help init
 ```
@@ -144,38 +157,32 @@ Think of an application as containing facets or dependencies, you can decide wha
 e.g include a web facet if it has a web frontend or a JPA facet if it has a JPA based interface with a datastore.
 You include the facets you're interested in and it builds a zip containing the source code of a skeleton application.
 
-to see a list of all avaialble dependencies
+to see a list of all available dependencies
 
 ```
 spring init --list
 ```
 
-or  visit the following website and enable the advanced search to see all available dependencies
-
-```
-http://start.spring.io/
-```
-
-the following command will create a simple web appicalition skelton in a new "hello" directory
+the following command will create a simple web application skeleton in a new "hello" directory
 ```
 spring init  -d=web,actuator,actuator-docs,hateoas \
-               --groupId=edu.jwsc.hello \
-               --package=edu.jwsc.hello    hello
-
+               --groupId=com.example \
+               --package=com.example    hello
 ```
 
-It's possible to tweak the language (java vs groovy) packaging (jar war) and build (gradle vs maven) defaults
+It's possible to tweak the language (java vs groovy) packaging (jar vs war) and build (gradle vs maven) defaults.
+The following PDF document has some examples .
 http://freecontent.manning.com/wp-content/uploads/initializing-a-spring-boot-project-with-spring-initializr.pdf
 
-
+Exploring the generated application you can see it's created a maven build file ...
 ```
 cd hello
 /vagrant/hello$ ls
 mvnw  mvnw.cmd  pom.xml  src
 ```
 
+... and a standard maven subdirectory structure to store the application files.7
 
-and it's created a standard maven subdirectory structure to store the application files
 ```
 /vagrant/hello$ du
 49      ./.mvn/wrapper
@@ -194,26 +201,28 @@ and it's created a standard maven subdirectory structure to store the applicatio
 1       ./src
 ```
 
-
-At this point we're good to run the webapp
+At this point we're good to run the webapp.
 ```
 $ mvn spring-boot:run
 ```
-in your browser navigate to
+In your browser navigate to
 ```
-[http://localhost:8080/](http://localhost:8080/)
+http://localhost:8080/
 ```
-this doesn't do much right now
-
-In the Intellij  IDE select File->Open and double click on the hello/pom.xml file to create a new project
-
- open up the java file in
- ```
- src/main/java/com/example/DemoApplication
+This doesn't do much right now, as we haven't added any custom logic.
+If you've added the actuator dependency you can see some metrics and stats using the url below.
 ```
- this file is the entry point of the application.
+http://localhost:8080/actuator
+```
+In the Intellij  IDE select File->Open and double click on the hello/pom.xml file to create a new project.
 
- we can add a simple rest controller mapping  so the class looks like the following
+Open up the following java file in the IDE.
+```
+src/main/java/com/example/HelloApplication
+```
+This file is the entry point of the application.
+
+We can add a simple REST controller mapping,  so the class now looks like :-
 ```
  package com.example;
 
@@ -224,29 +233,30 @@ In the Intellij  IDE select File->Open and double click on the hello/pom.xml fil
 
  @SpringBootApplication
  @RestController
- public class DemoApplication {
+ public class HelloApplication {
 
  	@RequestMapping("/")
- 	public String helloWorld() {
+ 	public String helloWorld(String name ) {
  		return "Hello World";
  	}
 
  	public static void main(String[] args) {
- 		SpringApplication.run(DemoApplication.class, args);
+ 		SpringApplication.run(HelloApplication.class, args);
  	}
  }
 ```
 
- Save the file, use [CTRL-C] to kill your existin running webapp and restart it  using
+Save the file, use [CTRL-C] to kill your existin running webapp and restart it  using
 ```
  $ mvn spring-boot:run
 ```
- refreshing your browser at the following location
+
+Refreshing your browser at the following location
  
- ```
+```
 [http://localhost:8080/](http://localhost:8080/)
- ```
- should now return a simple hello page
+```
+Should now return a simple hello page.
 
  by adding the actuator dependency when we called spring init
  we also automatically added a simple admin console set of pages to our webapp.
@@ -259,7 +269,7 @@ to make it easier to read There's a JSON formatter chrome extension you can add 
 https://chrome.google.com/webstore/detail/bcjindcccaagfpapjjmafapmmgkkhgoa
 
 
-## Spring Tool Suite
+## TODO Spring Tool Suite in vagrant
 there are some special spring boot wizards built into the Spring Tool Suite (STS) IDE
 This IDE can be downloaded from spring at
 https://spring.io/tools/sts/all
