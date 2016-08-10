@@ -48,7 +48,7 @@ sdk install maven
 ```
 Examples of commonly used command are below. The  full usage guide is at http://sdkman.io/usage.html
 
-| sdk cmd  |  example | description  |
+| sdk cmd                            |  example                | description  |
 |---|---|---|
 | sdk ls                             | sdk list                | show all candidate software you can install |
 | sdk ls <candidate>                 | sdk ls maven            | show all versions of candidate software |
@@ -80,9 +80,11 @@ There are three ways you can quickly create skeleton Spring Boot applications.
 * 
 
 ## Intellij - Spring Initializer 
-In Intellij navigate the following menu items 
-  File -> New...-> Project ... -> 
-Select "Spring Initializer" and click Next
+In Intellij 
+  navigate the following menu items   File -> New...-> Project ... -> 
+
+- Select "Spring Initializer" and click Next
+
 Enable any of the dependencies e.g 
 xxx
 Click finish to build a skeleton app. 
@@ -117,7 +119,7 @@ You can more about using it and installation instructions at
 
 http://docs.spring.io/spring-boot/docs/current/reference/html/getting-started-installing-spring-boot.html#getting-started-installing-the-cli 
 
-I recommend installing using sdkman utility descibed earlier
+I recommend installing using [sdkman](http://sdkman.io/) utility descibed earlier
 
 
 
@@ -194,23 +196,25 @@ and it's created a standard maven subdirectory structure to store the applicatio
 
 
 At this point we're good to run the webapp
-
+```
 $ mvn spring-boot:run
-
+```
 in your browser navigate to
+```
+[http://localhost:8080/](http://localhost:8080/)
+```
+this doesn't do much right now
 
-localhost:8080/
+In the Intellij  IDE select File->Open and double click on the hello/pom.xml file to create a new project
 
-this doesn't doo much right now
-
- in your IDE select File->Open and double click on the hello/pom.xml file to create a new project
-
- open up the src/main/java/com/example/DemoApplication
-
+ open up the java file in
+ ```
+ src/main/java/com/example/DemoApplication
+```
  this file is the entry point of the application.
 
  we can add a simple rest controller mapping  so the class looks like the following
-
+```
  package com.example;
 
  import org.springframework.boot.SpringApplication;
@@ -231,20 +235,23 @@ this doesn't doo much right now
  		SpringApplication.run(DemoApplication.class, args);
  	}
  }
+```
 
-
- save the file, use [CTRL-C] to kill your existin running webapp and restart it with the following command made from the hello directory
-
+ Save the file, use [CTRL-C] to kill your existin running webapp and restart it  using
+```
  $ mvn spring-boot:run
-
+```
  refreshing your browser at the following location
- localhost:8080/
+ 
+ ```
+[http://localhost:8080/](http://localhost:8080/)
+ ```
  should now return a simple hello page
 
  by adding the actuator dependency when we called spring init
  we also automatically added a simple admin console set of pages to our webapp.
 
-  localhost:8080/actuator
+  http://localhost:8080/actuator
 
 Most of this actuator related information is returned in JSON format.
 to make it easier to read There's a JSON formatter chrome extension you can add if you're using the chrome browser
